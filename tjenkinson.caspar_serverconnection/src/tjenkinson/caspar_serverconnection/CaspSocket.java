@@ -35,7 +35,7 @@ public class CaspSocket {
 		}
 		socket = new Socket(InetAddress.getByName(caspAddress), caspPort);
 		out = new PrintWriter(socket.getOutputStream(), true);
-		in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
 		connected = true;
 	}
 	
@@ -55,7 +55,7 @@ public class CaspSocket {
 	
 	public synchronized CaspReturn runCmd(CaspCmd cmd) throws IOException {
 		open(); // connect if not already
-		out.println(cmd.getCmdString()); // send command through socket
+		out.println(new String(cmd.getCmdString().getBytes("UTF-8"))); // send command through socket
 		long requestTime = new Date().getTime();
 		
 		String line = in.readLine();
