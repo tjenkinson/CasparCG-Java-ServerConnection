@@ -75,7 +75,6 @@ public class CaspSocket {
 		else if (status == 201) { // one line of data returned
 			endSequence = Pattern.compile("\\r\\n$");
 			charsRemove = 2;
-			response = in.readLine();
 		}
 		else {
 			getResponse = false;
