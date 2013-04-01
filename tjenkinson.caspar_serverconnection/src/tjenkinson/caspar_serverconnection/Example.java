@@ -11,8 +11,8 @@ public class Example {
 		int caspPort = 5250;
 		CaspSocket socket = new CaspSocket(caspAddress, caspPort);
 		
-		// loads video.? onto channel 1 layer 1
-		CaspReturn response = socket.runCmd(new LoadBg("1-1 \"video\""));
+		// loads AMB.? onto channel 1 layer 1
+		CaspReturn response = socket.runCmd(new LoadBg("1-1 \"AMB\""));
 		// gets the return code from the command
 		System.out.println("Return code: "+response.getStatus());
 		
@@ -28,6 +28,9 @@ public class Example {
 		
 		// opens the caspar diagnostics window
 		socket.runCmd(new Diag());
+	
+		// close the socket
+		socket.close();
 	}
 
 }
